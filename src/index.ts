@@ -1,12 +1,13 @@
 import "dotenv/config";
 
-import { Client, EmbedField, MessageEmbed } from "discord.js";
+import { Client, EmbedField } from "discord.js";
 import { commands } from "./commands";
 import { prisma } from "./prisma";
 import signale from "signale";
+import { StandardEmbed } from "./structs/standard-embed";
 
 const client = new Client();
-const prefix = "!";
+const prefix = "b!";
 
 client.on("ready", () => {
   signale.success(`Ready as ${client.user?.tag}`);
@@ -26,10 +27,10 @@ client.on("message", async (message) => {
       return message.reply(`This command does not exist. Use ${prefix}help to see all commands`);
     }
 
-    const embed = new MessageEmbed().addField("Description", command.description);
+    const embed = new StandardEmbed(message.author).addField("Description", command.description);
 
     if (command.syntax) {
-      embed.addField("Syntax", command.syntax);
+      embed.addField("Syntax", `\`${prefix}${commandName} ${command.syntax}\``);
     }
 
     return message.reply(embed);
@@ -47,7 +48,7 @@ client.on("message", async (message) => {
       };
     });
 
-    const embed = new MessageEmbed().addFields(fields);
+    const embed = new StandardEmbed(message.author).addFields(fields);
 
     return message.reply(embed);
   }
