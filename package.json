@@ -25,6 +25,9 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "generate": "prisma generate",
-    "lint": "eslint ." 
+    "lint": "eslint .",
+    "services:up": "docker compose up -d",
+    "services:down": "docker compose down",
+    "build:docker": "docker build . -t blossom/bot:latest"
   }
 }
