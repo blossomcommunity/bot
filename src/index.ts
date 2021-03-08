@@ -14,8 +14,23 @@ client.on("ready", () => {
 client.on("message", async (message) => {
   if (message.content.startsWith(prefix)) {
     const [caselessCommandName, ...args] = message.content.replace(prefix, "").split(" ");
-
     const commandName = caselessCommandName.toLowerCase();
+
+    if (commandName && args[0]) {
+      const command = commands.get(args[0]);
+
+      if (!command) {
+        return message.reply(`This command does not exist. Use ${prefix}help to see all commands`);
+      }
+
+      const embed = new MessageEmbed().addField("Description", command.description);
+
+      if (command.syntax) {
+        embed.addField("Syntax", command.syntax);
+      }
+
+      return message.reply(embed);
+    }
 
     if (commandName === "help") {
       const entries = [...commands.entries()];
