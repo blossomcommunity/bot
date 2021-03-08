@@ -51,7 +51,7 @@ client.on("message", async (message) => {
 
       await command.run(message, args);
     } catch (e) {
-      await message.reply(e.message);
+      await message.reply(`⚠ ${e.message}`);
     }
   }
 });
