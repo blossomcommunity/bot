@@ -73,6 +73,18 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
+"@prisma/client@2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-2.18.0.tgz#bff0a206f3caf7525583c703146f835dee0b5ad6"
+  integrity sha512-tRu0bdYNKIdWnFIbtgUmZyPgtDLV3AgwO8NYXirlbSn5poygbSaV87UfOBh1NmrvjS9EBP5dQv+bs62sVB84hA==
+  dependencies:
+    "@prisma/engines-version" "2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1"
+
+"@prisma/engines-version@2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1":
+  version "2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1.tgz#c595c9d85ab2c67b67d0eb7bfbb0a3b05b41fdbe"
+  integrity sha512-+Eljsb1XItfq9B6vRTA1Oe4CQOGAxbsjtPAIORZwaU4Gt9RybnXapFlrQ8Mac89PXeSgcO4RnPSLEYhcd3kSVg==
+
 "@prisma/engines@2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1":
   version "2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1"
   resolved "https://registry.npmjs.org/@prisma/engines/-/engines-2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1.tgz"
@@ -82,6 +94,11 @@
   version "7.0.7"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.7.tgz"
   integrity sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
+
+"@types/node@^14.14.32":
+  version "14.14.32"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.32.tgz#90c5c4a8d72bbbfe53033f122341343249183448"
+  integrity sha512-/Ctrftx/zp4m8JOujM5ZhwzlWLx22nbQJiVqz8/zE15gOeEW+uly3FSX4fGFpcfEvFzXcMCJwq9lGVWgyARXhg==
 
 "@types/strip-bom@^3.0.0":
   version "3.0.0"
@@ -1150,9 +1167,9 @@ prism-media@^1.2.2:
   resolved "https://registry.npmjs.org/prism-media/-/prism-media-1.2.7.tgz"
   integrity sha512-thS1z3L6BDmf724sqLC73bHGjSYArFTYHa7cqInyS3EdDNTHKgDCXy7l+IhRvlnX7aFNiUb8jJcC+R8ezxwgMA==
 
-prisma@^2.18.0:
+prisma@2.18.0:
   version "2.18.0"
-  resolved "https://registry.npmjs.org/prisma/-/prisma-2.18.0.tgz"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-2.18.0.tgz#b19a2d4a487b8b62759777be55506567af41f6ae"
   integrity sha512-03po/kFW3/oGHtnANgZiKYz22KEx6NpdaIP2r4eievmVam9f2+0PdP4x/KSFdMCT6B6VHh+3ILTi2z3bYosCgA==
   dependencies:
     "@prisma/engines" "2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1"
