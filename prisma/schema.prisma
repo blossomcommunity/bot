@@ -8,8 +8,11 @@ generator client {
 }
 
 model Profile {
-  discord_id String @id
+  discord_id String  @id
   bio        String
+  youtube    String?
+  twitch     String?
+  tiktok     String?
 
   @@map("profile")
 }

@@ -22,7 +22,8 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "ioredis": "^4.23.0",
-    "signale": "^1.4.0"
+    "signale": "^1.4.0",
+    "zod": "^1.11.11"
   },
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
