@@ -6,6 +6,7 @@
   "author": "Alistair Smith <alistairsmith01@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/ioredis": "^4.22.0",
     "@types/node": "^14.14.32",
     "@types/signale": "^1.4.1",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
@@ -20,6 +21,7 @@
     "@prisma/client": "2.18.0",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
+    "ioredis": "^4.23.0",
     "signale": "^1.4.0"
   },
   "scripts": {
@@ -30,6 +32,8 @@
     "lint": "eslint .",
     "services:up": "docker compose up -d",
     "services:down": "docker compose down",
-    "build:docker": "docker build . -t blossom/bot:latest"
+    "build:docker": "docker build . -t blossom/bot:latest",
+    "migrate": "prisma migrate dev --preview-feature",
+    "migrate:prod": "prisma migrate deploy --preview-feature"
   }
 }
