@@ -9,7 +9,7 @@ export function profileEmbed(profile: Profile, discordUser: User): StandardEmbed
 
   for (const platform of ALLOWED_PLATFORMS) {
     if (profile[platform]) {
-      embed.addField(`🌎 ${title(platform)}`, profile[platform]);
+      embed.addField(`🌎 ${title(platform)}`, profile[platform], true);
     }
   }
 

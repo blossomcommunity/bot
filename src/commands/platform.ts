@@ -1,5 +1,5 @@
 import { prisma } from "../prisma";
-import { wrapRedis } from "../redis";
+import { redis, wrapRedis } from "../redis";
 import { StandardEmbed } from "../structs/standard-embed";
 import { Command } from "../types/command";
 import * as z from "zod";
@@ -45,6 +45,8 @@ export const platform: Command = {
         [platform]: url,
       },
     });
+
+    await redis.del(`profile:${message.author.id}`);
 
     await message.reply(new StandardEmbed(message.author).setDescription("**Saved** ✅"));
   },
