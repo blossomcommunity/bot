@@ -1,7 +1,6 @@
-import { guilds } from "../inhibitors/guilds";
-import { Command } from "../types/command";
-import { ThirdPartyStatuses } from "../structs/third-party-statuses";
-import { StandardEmbed } from "../structs/standard-embed";
+import {Command} from "../types/command";
+import {ThirdPartyStatuses} from "../structs/third-party-statuses";
+import {StandardEmbed} from "../structs/standard-embed";
 
 const STATUS_PLATFORMS = ["twitch", "discord"];
 
@@ -9,6 +8,7 @@ export const status: Command = {
   description: `Checks server server statuses for: ${STATUS_PLATFORMS.join(", ")}`,
   inhibitors: [],
   syntax: "<platform>",
+  aliases: ["status"],
   async run(message, args) {
     const platform = args[0].toLowerCase();
 

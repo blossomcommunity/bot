@@ -1,5 +1,5 @@
-import { Root as TwitchStatus } from "../types/statuses/twitch";
-import { wrapRedis } from "../redis";
+import {Root as TwitchStatus} from "../types/statuses/twitch";
+import {wrapRedis} from "../redis";
 import fetch from "node-fetch";
 
 export class ThirdPartyStatuses {

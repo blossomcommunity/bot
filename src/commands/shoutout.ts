@@ -1,13 +1,11 @@
-import { prisma } from "../prisma";
-import { profileEmbed } from "../structs/profile-embed";
-import { ALLOWED_PLATFORMS } from "../structs/profile-platforms";
-import { StandardEmbed } from "../structs/standard-embed";
-import { Command } from "../types/command";
-import { title } from "../utils";
+import {prisma} from "../prisma";
+import {profileEmbed} from "../structs/profile-embed";
+import {Command} from "../types/command";
 
 export const shoutout: Command = {
   description: "Find a random profile for a shoutout!",
   inhibitors: [],
+  aliases: ["shoutout"],
   async run(message) {
     const count = await prisma.profile.count();
 

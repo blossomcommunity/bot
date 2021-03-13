@@ -1,31 +1,13 @@
 import "dotenv/config";
 
-import { Client, EmbedField } from "discord.js";
-import { commands } from "./commands";
-import { prisma } from "./prisma";
-import { StandardEmbed } from "./structs/standard-embed";
-import { Command } from "./types/command";
+import {Client, EmbedField} from "discord.js";
+import {commands, commandsWithAliases} from "./commands";
+import {prisma} from "./prisma";
+import {StandardEmbed} from "./structs/standard-embed";
 import signale from "signale";
 
 const client = new Client();
-const prefix = "b!";
-
-const commandsWithAliases = new Map(
-  Object.entries(
-    [...commands.entries()].reduce((all, entry) => {
-      const [name, command] = entry;
-
-      const commandNames = [...new Set([name, ...(command.aliases ?? [])])];
-
-      return commandNames.reduce(
-        (previous, commandName) => {
-          return { ...previous, [commandName]: command };
-        },
-        { ...all }
-      );
-    }, {} as Record<string, Command>)
-  )
-);
+const prefix = process.env.PREFIX || "b!";
 
 client.on("ready", () => {
   signale.success(`Ready as ${client.user?.tag}`);
@@ -59,13 +41,13 @@ client.on("message", async message => {
   }
 
   if (commandName === "help") {
-    const entries = [...commands.entries()];
+    const entries = [...commands.values()];
 
-    const fields: EmbedField[] = entries.map(entry => {
-      const [name, command] = entry;
+    const fields: EmbedField[] = entries.map(command => {
+      const name = command.aliases[0];
 
       return {
-        name: `${prefix}${name}`,
+        name: prefix + name,
         value: command.description,
         inline: false,
       };

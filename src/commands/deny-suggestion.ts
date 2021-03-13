@@ -1,16 +1,17 @@
-import { staff } from "../inhibitors";
-import { guilds } from "../inhibitors/guilds";
-import { Command } from "../types/command";
-import { TextChannel, MessageEmbed } from "discord.js";
+import {staff} from "../inhibitors";
+import {guilds} from "../inhibitors/guilds";
+import {Command} from "../types/command";
+import {MessageEmbed, TextChannel} from "discord.js";
 
 export const denySuggestion: Command = {
   description: `Deny suggestion. Requires <@&${process.env.STAFF_ROLE_ID}>.`,
   inhibitors: [guilds, staff],
   syntax: "<ID> <message>",
+  aliases: ["deny-suggestion"],
   async run(message, args) {
     const [suggestionId, ...rest] = args;
 
-    const channel = message.client.channels.cache.find((channel) => {
+    const channel = message.client.channels.cache.find(channel => {
       return (channel as TextChannel).name.includes("suggest");
     }) as TextChannel | undefined;
 

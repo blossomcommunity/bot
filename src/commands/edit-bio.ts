@@ -1,12 +1,13 @@
-import { prisma } from "../prisma";
-import { redis, wrapRedis } from "../redis";
-import { StandardEmbed } from "../structs/standard-embed";
-import { Command } from "../types/command";
+import {prisma} from "../prisma";
+import {redis, wrapRedis} from "../redis";
+import {StandardEmbed} from "../structs/standard-embed";
+import {Command} from "../types/command";
 
 export const editBio: Command = {
   description: "Edit your bio",
   inhibitors: [],
   syntax: "<bio>",
+  aliases: ["edit-bio"],
   async run(message, args) {
     const bio = args.join(" ");
 
@@ -23,8 +24,8 @@ export const editBio: Command = {
     }
 
     await prisma.profile.update({
-      where: { discord_id: message.author.id },
-      data: { bio },
+      where: {discord_id: message.author.id},
+      data: {bio},
     });
 
     await redis.del(`profile:${message.author.id}`);

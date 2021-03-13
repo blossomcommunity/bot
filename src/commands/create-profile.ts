@@ -1,12 +1,13 @@
-import { prisma } from "../prisma";
-import { wrapRedis } from "../redis";
-import { StandardEmbed } from "../structs/standard-embed";
-import { Command } from "../types/command";
+import {prisma} from "../prisma";
+import {wrapRedis} from "../redis";
+import {StandardEmbed} from "../structs/standard-embed";
+import {Command} from "../types/command";
 
 export const createProfile: Command = {
   description: "Create a profile",
   inhibitors: [],
   syntax: "<bio>",
+  aliases: ["create-profile"],
   async run(message, args) {
     const bio = args.join(" ");
 

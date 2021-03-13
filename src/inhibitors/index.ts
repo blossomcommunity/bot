@@ -1,2 +1,2 @@
-export { guilds } from './guilds';
-export { staff } from './staff'
+export {guilds} from "./guilds";
+export {staff} from "./staff";
