@@ -3,17 +3,35 @@ import "dotenv/config";
 import { Client, EmbedField } from "discord.js";
 import { commands } from "./commands";
 import { prisma } from "./prisma";
-import signale from "signale";
 import { StandardEmbed } from "./structs/standard-embed";
+import { Command } from "./types/command";
+import signale from "signale";
 
 const client = new Client();
 const prefix = "b!";
+
+const commandsWithAliases = new Map(
+  Object.entries(
+    [...commands.entries()].reduce((all, entry) => {
+      const [name, command] = entry;
+
+      const commandNames = [...new Set([name, ...(command.aliases ?? [])])];
+
+      return commandNames.reduce(
+        (previous, commandName) => {
+          return { ...previous, [commandName]: command };
+        },
+        { ...all }
+      );
+    }, {} as Record<string, Command>)
+  )
+);
 
 client.on("ready", () => {
   signale.success(`Ready as ${client.user?.tag}`);
 });
 
-client.on("message", async (message) => {
+client.on("message", async message => {
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
 
@@ -21,7 +39,7 @@ client.on("message", async (message) => {
   const commandName = caselessCommandName.toLowerCase();
 
   if (commandName === "help" && args[0]) {
-    const command = commands.get(args[0]);
+    const command = commandsWithAliases.get(args[0]);
 
     if (!command) {
       return message.reply(`This command does not exist. Use ${prefix}help to see all commands`);
@@ -33,14 +51,19 @@ client.on("message", async (message) => {
       embed.addField("Syntax", `\`${prefix}${args[0]} ${command.syntax}\``);
     }
 
+    if (command.aliases) {
+      embed.addField("Aliases", command.aliases.map(a => `\`${a}\``).join(", "));
+    }
+
     return message.reply(embed);
   }
 
   if (commandName === "help") {
     const entries = [...commands.entries()];
 
-    const fields: EmbedField[] = entries.map((entry) => {
+    const fields: EmbedField[] = entries.map(entry => {
       const [name, command] = entry;
+
       return {
         name: `${prefix}${name}`,
         value: command.description,
@@ -53,7 +76,7 @@ client.on("message", async (message) => {
     return message.reply(embed);
   }
 
-  const command = commands.get(commandName);
+  const command = commandsWithAliases.get(commandName);
 
   if (!command) {
     return message.reply("That command does not exist.");
