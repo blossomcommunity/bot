@@ -6,9 +6,9 @@ import { StandardEmbed } from "../structs/standard-embed";
 const STATUS_PLATFORMS = ["twitch", "discord"];
 
 export const status: Command = {
-  description: `Checks server server statuses for ${STATUS_PLATFORMS.join(", ")}`,
+  description: `Checks server server statuses for: ${STATUS_PLATFORMS.join(", ")}`,
   inhibitors: [],
-  syntax: "<message>",
+  syntax: "<platform>",
   async run(message, args) {
     const platform = args[0].toLowerCase();
 
@@ -22,7 +22,7 @@ export const status: Command = {
         components = await await ThirdPartyStatuses.discord();
         break;
       default:
-        throw new Error(`You must choose ${STATUS_PLATFORMS.join(", ")}.`);
+        throw new Error(`Invalid platform. Please use: ${STATUS_PLATFORMS.join(", ")}.`);
     }
 
     const allUp = components.every(component => {
