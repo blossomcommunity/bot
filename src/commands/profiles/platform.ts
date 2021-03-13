@@ -1,9 +1,9 @@
-import {prisma} from "../prisma";
-import {redis, wrapRedis} from "../redis";
-import {StandardEmbed} from "../structs/standard-embed";
-import {Command} from "../types/command";
+import {prisma} from "../../prisma";
+import {redis, wrapRedis} from "../../redis";
+import {StandardEmbed} from "../../structs/standard-embed";
+import {Command} from "../../types/command";
 import * as z from "zod";
-import {ALLOWED_PLATFORMS} from "../structs/profile-platforms";
+import {ALLOWED_PLATFORMS} from "../../structs/profile-platforms";
 
 export const platform: Command = {
   description: "Add a platform to your profile",

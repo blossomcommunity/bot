@@ -1,6 +1,6 @@
-import {staff} from "../inhibitors";
-import {guilds} from "../inhibitors/guilds";
-import {Command} from "../types/command";
+import {staff} from "../../inhibitors";
+import {guilds} from "../../inhibitors/guilds";
+import {Command} from "../../types/command";
 import {MessageEmbed, TextChannel} from "discord.js";
 
 export const denySuggestion: Command = {

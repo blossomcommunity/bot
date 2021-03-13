@@ -1,6 +1,6 @@
-import {prisma} from "../prisma";
-import {profileEmbed} from "../structs/profile-embed";
-import {Command} from "../types/command";
+import {prisma} from "../../prisma";
+import {profileEmbed} from "../../structs/profile-embed";
+import {Command} from "../../types/command";
 
 export const shoutout: Command = {
   description: "Find a random profile for a shoutout!",

@@ -1,6 +1,6 @@
-import {guilds} from "../inhibitors/guilds";
-import {StandardEmbed} from "../structs/standard-embed";
-import {Command} from "../types/command";
+import {guilds} from "../../inhibitors/guilds";
+import {StandardEmbed} from "../../structs/standard-embed";
+import {Command} from "../../types/command";
 import {TextChannel} from "discord.js";
 
 export const suggest: Command = {

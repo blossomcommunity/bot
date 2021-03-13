@@ -1,15 +1,15 @@
 import {Command} from "../types/command";
-import {profile} from "./profile";
+import {profile} from "./profiles/profile";
 
-import {ping} from "./ping";
-import {createProfile} from "./create-profile";
-import {platform} from "./platform";
-import {shoutout} from "./shoutout";
-import {editBio} from "./edit-bio";
-import {suggest} from "./suggest";
-import {acceptSuggestion} from "./accept-suggestion";
-import {denySuggestion} from "./deny-suggestion";
-import {status} from "./status";
+import {ping} from "./util/ping";
+import {createProfile} from "./profiles/create";
+import {platform} from "./profiles/platform";
+import {shoutout} from "./profiles/shoutout";
+import {editBio} from "./profiles/edit-bio";
+import {suggest} from "./suggestions/suggest";
+import {acceptSuggestion} from "./suggestions/accept";
+import {denySuggestion} from "./suggestions/deny";
+import {status} from "./util/status";
 
 import signale from "signale";
 

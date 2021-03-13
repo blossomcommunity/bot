@@ -1,7 +1,7 @@
-import {prisma} from "../prisma";
-import {wrapRedis} from "../redis";
-import {profileEmbed} from "../structs/profile-embed";
-import {Command} from "../types/command";
+import {prisma} from "../../prisma";
+import {wrapRedis} from "../../redis";
+import {profileEmbed} from "../../structs/profile-embed";
+import {Command} from "../../types/command";
 
 export const profile: Command = {
   inhibitors: [],
