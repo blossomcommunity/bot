@@ -5,6 +5,8 @@ import {commands, commandsWithAliases} from "./commands";
 import {prisma} from "./prisma";
 import {StandardEmbed} from "./structs/standard-embed";
 import signale from "signale";
+import {guildMemberAdd} from "./events/member/add";
+import {guildMemberRemove} from "./events/member/remove";
 
 const client = new Client();
 const prefix = process.env.PREFIX || "b!";
@@ -75,6 +77,14 @@ client.on("message", async message => {
   } catch (e) {
     await message.reply(`⚠ ${e.message}`);
   }
+});
+
+client.on("guildMemberAdd", async member => {
+  guildMemberAdd(member);
+});
+
+client.on("guildMemberRemove", async member => {
+  guildMemberRemove(member);
 });
 
 prisma.$connect().then(() => client.login(process.env.DISCORD_TOKEN));
