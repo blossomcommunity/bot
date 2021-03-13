@@ -7,7 +7,7 @@ export const denySuggestion: Command = {
   description: `Deny suggestion. Requires <@&${process.env.STAFF_ROLE_ID}>.`,
   inhibitors: [guilds, staff],
   syntax: "<ID> <message>",
-  aliases: ["deny-suggestion"],
+  aliases: ["deny", "ds"],
   async run(message, args) {
     const [suggestionId, ...rest] = args;
 

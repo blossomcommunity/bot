@@ -8,7 +8,7 @@ export const status: Command = {
   description: `Checks server server statuses for: ${STATUS_PLATFORMS.join(", ")}`,
   inhibitors: [],
   syntax: "<platform>",
-  aliases: ["status"],
+  aliases: ["s", "status"],
   async run(message, args) {
     const platform = args[0].toLowerCase();
 

@@ -7,7 +7,7 @@ export const profile: Command = {
   inhibitors: [],
   description: "Fetch somebody else's bio",
   syntax: "[user]",
-  aliases: ["profile"],
+  aliases: ["profile", "p"],
   async run(message, [mention = null]) {
     const id = message.mentions.members?.first()?.id || mention || message.author.id;
 

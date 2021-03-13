@@ -7,7 +7,7 @@ export const acceptSuggestion: Command = {
   description: `Accept suggestion. Requires <@&${process.env.STAFF_ROLE_ID}>.`,
   inhibitors: [guilds, staff],
   syntax: "<ID> <message>",
-  aliases: ["accept-suggestion"],
+  aliases: ["accept", "as"],
   async run(message, args) {
     const [suggestionId, ...rest] = args;
 
