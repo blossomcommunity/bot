@@ -1,6 +1,7 @@
 import {Command} from "../../types/command";
 import {ThirdPartyStatuses} from "../../structs/third-party-statuses";
 import {StandardEmbed} from "../../structs/standard-embed";
+import {title} from "../../utils";
 
 const STATUS_PLATFORMS = ["twitch", "discord"];
 
@@ -31,7 +32,7 @@ export const status: Command = {
     });
 
     const embed = new StandardEmbed(message.author)
-      .setTitle(`${platform.charAt(0).toUpperCase() + platform.substr(1).toLowerCase()} Status`)
+      .setTitle(`${title(platform)} Status`)
       .addFields(
         components.map(component => {
           const [name, status] = component;
