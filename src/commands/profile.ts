@@ -10,6 +10,7 @@ export const profile: Command = {
   inhibitors: [],
   description: "Fetch somebody else's bio",
   syntax: "[user]",
+  aliases: ["p"],
   async run(message, [mention = null]) {
     const id = message.mentions.members?.first()?.id || mention || message.author.id;
 
@@ -24,9 +25,7 @@ export const profile: Command = {
     });
 
     if (!userProfile) {
-      throw new Error(
-        `${id === message.author.id ? "You do" : "This user does"} not have a profile`
-      );
+      throw new Error(`${id === message.author.id ? "You do" : "This user does"} not have a profile`);
     }
 
     await message.channel.send(profileEmbed(userProfile, user).setTitle("Profile"));

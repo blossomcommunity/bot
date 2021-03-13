@@ -7,10 +7,11 @@ export const denySuggestion: Command = {
   description: `Deny suggestion. Requires <@&${process.env.STAFF_ROLE_ID}>.`,
   inhibitors: [guilds, staff],
   syntax: "<ID> <message>",
+  aliases: ["deny", "ds"],
   async run(message, args) {
     const [suggestionId, ...rest] = args;
 
-    const channel = message.client.channels.cache.find((channel) => {
+    const channel = message.client.channels.cache.find(channel => {
       return (channel as TextChannel).name.includes("suggest");
     }) as TextChannel | undefined;
 
