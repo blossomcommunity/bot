@@ -42,13 +42,8 @@ export const status: Command = {
             inline: true,
           };
         })
-      );
-
-    if (allUp) {
-      embed.setColor("GREEN");
-    } else {
-      embed.setColor("YELLOW");
-    }
+      )
+      .setColor(allUp ? "GREEN" : "YELLOW");
 
     await message.reply(embed);
   },
