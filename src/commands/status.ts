@@ -19,7 +19,7 @@ export const status: Command = {
         components = await ThirdPartyStatuses.twitch();
         break;
       case "discord":
-        components = await await ThirdPartyStatuses.discord();
+        components = await ThirdPartyStatuses.discord();
         break;
       default:
         throw new Error(`Invalid platform. Please use: ${STATUS_PLATFORMS.join(", ")}.`);
@@ -42,13 +42,8 @@ export const status: Command = {
             inline: true,
           };
         })
-      );
-
-    if (allUp) {
-      embed.setColor("GREEN");
-    } else {
-      embed.setColor("YELLOW");
-    }
+      )
+      .setColor(allUp ? "GREEN" : "YELLOW");
 
     await message.reply(embed);
   },
