@@ -9,7 +9,7 @@ import { editBio } from "./edit-bio";
 import { suggest } from "./suggest";
 import { acceptSuggestion } from "./accept-suggestion";
 import { denySuggestion } from "./deny-suggestion";
-import { twitchStatus } from "./twitch-status";
+import { status } from "./status";
 
 import signale from "signale";
 
@@ -24,7 +24,6 @@ commands.set("shoutout", shoutout);
 commands.set("suggest", suggest);
 commands.set("accept-suggestion", acceptSuggestion);
 commands.set("deny-suggestion", denySuggestion);
-
-commands.set("twitch-status", twitchStatus);
+commands.set("status", status);
 
 signale.info("Registered commands:", [...commands.keys()].join(", "));
