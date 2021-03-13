@@ -6,6 +6,9 @@ import { createProfile } from "./create-profile";
 import { platform } from "./platform";
 import { shoutout } from "./shoutout";
 import { editBio } from "./edit-bio";
+import { suggest } from "./suggest";
+
+import signale from "signale";
 
 export const commands = new Map<string, Command>();
 
@@ -15,3 +18,6 @@ commands.set("create-profile", createProfile);
 commands.set("edit-bio", editBio);
 commands.set("platform", platform);
 commands.set("shoutout", shoutout);
+commands.set("suggest", suggest);
+
+signale.info("Registered commands:", [...commands.keys()].join(", "));
