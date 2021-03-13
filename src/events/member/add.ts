@@ -1,4 +1,4 @@
-import {GuildMember, Message, MessageEmbed, User, VoiceChannel} from "discord.js";
+import {GuildMember, MessageEmbed, VoiceChannel} from "discord.js";
 
 export async function guildMemberAdd(member: GuildMember) {
   const channel = member.guild.channels.cache.find(channel => {

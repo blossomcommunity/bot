@@ -79,12 +79,7 @@ client.on("message", async message => {
   }
 });
 
-client.on("guildMemberAdd", async member => {
-  guildMemberAdd(member);
-});
-
-client.on("guildMemberRemove", async member => {
-  guildMemberRemove(member);
-});
+client.on("guildMemberAdd", guildMemberAdd);
+client.on("guildMemberRemove", guildMemberRemove);
 
 prisma.$connect().then(() => client.login(process.env.DISCORD_TOKEN));
