@@ -7,8 +7,12 @@ export const createProfile: Command = {
   description: "Create a profile",
   inhibitors: [],
   syntax: "<bio>",
-  aliases: ["create-profile"],
+  aliases: ["create-profile", "cp"],
   async run(message, args) {
+    if (!args.length) {
+      throw new Error("You must specify a bio");
+    }
+
     const bio = args.join(" ");
 
     const userProfile = await wrapRedis(`profile:${message.author.id}`, () => {
