@@ -8,4 +8,5 @@ Bot powering Blossom Community.
 [] Add member count to status
 [] Reaction roles for onboarding and roles
 [] Member leave/join logging
+[] Welcome DM
 [] Eventual moderation commands?
