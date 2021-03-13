@@ -7,6 +7,8 @@ import { platform } from "./platform";
 import { shoutout } from "./shoutout";
 import { editBio } from "./edit-bio";
 import { suggest } from "./suggest";
+import { acceptSuggestion } from "./accept-suggestion";
+import { denySuggestion } from "./deny-suggestion";
 
 import signale from "signale";
 
@@ -19,5 +21,7 @@ commands.set("edit-bio", editBio);
 commands.set("platform", platform);
 commands.set("shoutout", shoutout);
 commands.set("suggest", suggest);
+commands.set("accept-suggestion", acceptSuggestion);
+commands.set("deny-suggestion", denySuggestion);
 
 signale.info("Registered commands:", [...commands.keys()].join(", "));

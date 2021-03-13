@@ -28,5 +28,7 @@ export const suggest: Command = {
       await message.react("<:blossomcheck:818358018488008704>");
       await message.react("<:blossomx:818358018521038929>");
     });
+
+    await message.reply("Suggestion added!");
   },
 };

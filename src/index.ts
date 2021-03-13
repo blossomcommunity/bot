@@ -30,7 +30,7 @@ client.on("message", async (message) => {
     const embed = new StandardEmbed(message.author).addField("Description", command.description);
 
     if (command.syntax) {
-      embed.addField("Syntax", `\`${prefix}${commandName} ${command.syntax}\``);
+      embed.addField("Syntax", `\`${prefix}${args[0]} ${command.syntax}\``);
     }
 
     return message.reply(embed);
