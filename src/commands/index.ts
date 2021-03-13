@@ -44,6 +44,14 @@ export const commandsWithAliases = new Map(
   )
 );
 
+const commandNames = [...commands.values()].map(c => c.aliases).flat();
+
+const duplicateAliases = commandNames.filter((c, i, a) => a.indexOf(c) !== i);
+
+if (duplicateAliases.length > 0) {
+  throw new Error(`Encountered duplicate aliases: ${duplicateAliases.join(", ")}`);
+}
+
 signale.info(
   "Registered commands:",
   [...commands.values()]
