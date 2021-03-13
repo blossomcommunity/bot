@@ -10,7 +10,10 @@ export const platform: Command = {
   inhibitors: [],
   syntax: "<platform> <url>",
   aliases: ["platform"],
-  async run(message, [platform, url]) {
+  async run(message, args) {
+    const platform = args[0].toLowerCase();
+    const [, url] = args;
+
     if (!ALLOWED_PLATFORMS.includes(platform as "tiktok")) {
       throw new Error(
         `Invalid platform! You must choose one of the following: ${ALLOWED_PLATFORMS.join(", ")}`
