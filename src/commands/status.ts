@@ -19,7 +19,7 @@ export const status: Command = {
         components = await ThirdPartyStatuses.twitch();
         break;
       case "discord":
-        components = await await ThirdPartyStatuses.discord();
+        components = await ThirdPartyStatuses.discord();
         break;
       default:
         throw new Error(`Invalid platform. Please use: ${STATUS_PLATFORMS.join(", ")}.`);
