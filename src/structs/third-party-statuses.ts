@@ -15,9 +15,9 @@ export class ThirdPartyStatuses {
 
   private static async twitchInternal() {
     const url = "https://yfj40zdsk34s.statuspage.io/api/v2/summary.json";
-    const body = (await fetch(url).then((res) => res.json())) as TwitchStatus;
+    const body = (await fetch(url).then(res => res.json())) as TwitchStatus;
 
-    const statuses = body.components.map((component) => {
+    const statuses = body.components.map(component => {
       return [component.name, component.status === "operational"];
     });
 

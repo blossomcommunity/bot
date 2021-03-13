@@ -8,6 +8,7 @@
   "devDependencies": {
     "@types/ioredis": "^4.22.0",
     "@types/node": "^14.14.32",
+    "@types/node-fetch": "^2.5.8",
     "@types/signale": "^1.4.1",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
@@ -22,6 +23,7 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "ioredis": "^4.23.0",
+    "node-fetch": "^2.6.1",
     "signale": "^1.4.0",
     "zod": "^1.11.11"
   },

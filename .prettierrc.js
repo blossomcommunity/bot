@@ -1,4 +1,5 @@
 module.exports = {
-  printWidth: 120,
+  printWidth: 100,
   quoteProps: "consistent",
+  arrowParens: "avoid",
 };
