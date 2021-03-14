@@ -13,6 +13,13 @@ const prefix = process.env.PREFIX || "b!";
 
 client.on("ready", () => {
   signale.success(`Ready as ${client.user?.tag}`);
+  client.user?.setPresence({
+    status: "online",
+    activity: {
+      type: "WATCHING",
+      name: `over blossom's ${client.guilds.cache.get("805539092870856704")?.memberCount} members!`,
+    },
+  });
 });
 
 client.on("message", async message => {
