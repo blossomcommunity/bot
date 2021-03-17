@@ -6,7 +6,7 @@ export async function guildMemberRemove(member: GuildMember | PartialGuildMember
     activity: {
       type: "WATCHING",
       name: `over blossom's ${
-        member.client.guilds.cache.get("805539092870856704")?.memberCount
+        member.client.guilds.cache.get(process.env.GUILD_ID!)?.memberCount
       } members!`,
     },
   });

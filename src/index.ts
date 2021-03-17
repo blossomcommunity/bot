@@ -17,7 +17,9 @@ client.on("ready", () => {
     status: "online",
     activity: {
       type: "WATCHING",
-      name: `over blossom's ${client.guilds.cache.get("805539092870856704")?.memberCount} members!`,
+      name: `over blossom's ${
+        client.guilds.cache.get(process.env.GUILD_ID!)?.memberCount
+      } members!`,
     },
   });
 });
