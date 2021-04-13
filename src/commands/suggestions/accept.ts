@@ -8,6 +8,7 @@ export const acceptSuggestion: Command = {
   inhibitors: [guilds, staff],
   syntax: "<ID> <message>",
   aliases: ["accept", "as"],
+  hideInHelpMenu: true,
   async run(message, args) {
     const [suggestionId, ...rest] = args;
 

@@ -5,6 +5,7 @@ export interface Command {
   inhibitors: Inhibitor[] | Inhibitor;
   syntax?: string;
   aliases: string[];
+  hideInHelpMenu?: boolean;
 
   run(message: Message, args: string[]): Promise<void>;
 }

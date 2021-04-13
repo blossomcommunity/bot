@@ -10,6 +10,7 @@ import {suggest} from "./suggestions/suggest";
 import {acceptSuggestion} from "./suggestions/accept";
 import {denySuggestion} from "./suggestions/deny";
 import {status} from "./util/status";
+import {ambassador} from "./util/ambassador";
 
 import signale from "signale";
 
@@ -25,6 +26,7 @@ commands.add(suggest);
 commands.add(acceptSuggestion);
 commands.add(denySuggestion);
 commands.add(status);
+commands.add(ambassador);
 
 export const commandsWithAliases = new Map(
   Object.entries(

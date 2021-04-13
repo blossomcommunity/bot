@@ -7,9 +7,11 @@ import {StandardEmbed} from "./structs/standard-embed";
 import signale from "signale";
 import {guildMemberAdd} from "./events/member/add";
 import {guildMemberRemove} from "./events/member/remove";
+import {staff} from "./inhibitors";
 
 const client = new Client();
 const prefix = process.env.PREFIX || "b!";
+const staffRole = process.env.STAFF_ROLE_ID;
 
 client.on("ready", () => {
   signale.success(`Ready as ${client.user?.tag}`);
@@ -54,17 +56,22 @@ client.on("message", async message => {
   if (commandName === "help") {
     const entries = [...commands.values()];
 
-    const fields: EmbedField[] = entries.map(command => {
-      const name = command.aliases[0];
+    const fields = entries
+      .filter(x => {
+        const inhibitors = Array.isArray(x.inhibitors) ? x.inhibitors : [x.inhibitors];
+        if (inhibitors.includes(staff) && message.member?.roles.cache.get(staffRole as string)) {
+          return true;
+        } else {
+          return !x.hideInHelpMenu;
+        }
+      })
+      .map(command => {
+        const name = command.aliases[0];
 
-      return {
-        name: prefix + name,
-        value: command.description,
-        inline: false,
-      };
-    });
+        return `\`${prefix}${name}\`: ${command.description}`;
+      });
 
-    const embed = new StandardEmbed(message.author).addFields(fields);
+    const embed = new StandardEmbed(message.author).setDescription(fields.join("\n"));
 
     return message.reply(embed);
   }
