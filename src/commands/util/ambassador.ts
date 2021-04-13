@@ -11,26 +11,26 @@ const ambassadorRoleID = process.env.AMBASSADOR_ROLE_ID;
 const gqlCID = process.env.GQL as string;
 
 export const ambassador: Command = {
-  description: "Get the Blossom Ambassador role",
-  inhibitors: [guilds],
-  syntax: "<Twitch username>",
-  aliases: ["ambassador"],
-  async run(message, [username = null]) {
-    const prefix = process.env.PREFIX || "b!";
+	description: "Get the Blossom Ambassador role",
+	inhibitors: [guilds],
+	syntax: "<Twitch username>",
+	aliases: ["ambassador"],
+	async run(message, [username = null]) {
+		const prefix = process.env.PREFIX || "b!";
 
-    if (!username) {
-      throw new Error("Missing Twitch username!");
-    }
+		if (!username) {
+			throw new Error("Missing Twitch username!");
+		}
 
-    const ambassadorRole = (await message.guild!.roles.cache.get(
-      ambassadorRoleID as string
-    )) as Role;
+		const ambassadorRole = (await message.guild!.roles.cache.get(
+			ambassadorRoleID as string
+		)) as Role;
 
-    if ((await message.member?.roles.cache.get(ambassadorRoleID as string)) as Role) {
-      throw new Error("you're already an Ambassador!");
-    }
+		if ((await message.member?.roles.cache.get(ambassadorRoleID as string)) as Role) {
+			throw new Error("you're already an Ambassador!");
+		}
 
-    const query = gql`
+		const query = gql`
       query {
         user(login: "${username}") {
           description
@@ -44,62 +44,62 @@ export const ambassador: Command = {
       }
     `;
 
-    const url = "https://gql.twitch.tv/gql";
+		const url = "https://gql.twitch.tv/gql";
 
-    const graphQLClient = new GraphQLClient(url, {
-      headers: {
-        "Client-ID": `${gqlCID}`,
-      },
-    });
+		const graphQLClient = new GraphQLClient(url, {
+			headers: {
+				"Client-ID": `${gqlCID}`,
+			},
+		});
 
-    const data = await graphQLClient.request<PanelRes["data"]>(query);
+		const data = await graphQLClient.request<PanelRes["data"]>(query);
 
-    if (!data.user) {
-      throw new Error("Twitch user not found.");
-    }
+		if (!data.user) {
+			throw new Error("Twitch user not found.");
+		}
 
-    if (!data.user.panels) {
-      throw new Error("no panels found found.");
-    }
+		if (!data.user.panels) {
+			throw new Error("no panels found found.");
+		}
 
-    const hasBlossom = data.user.panels.some(panel => {
-      return !!panel.linkURL?.includes("QMQ3jwGYz3");
-    });
+		const hasBlossom = data.user.panels.some(panel => {
+			return !!panel.linkURL?.includes("QMQ3jwGYz3");
+		});
 
-    if (!hasBlossom) {
-      const embed = new StandardEmbed(message.author).setDescription(
-        "We couldn't find a panel with the Discord URL `discord.gg/QMQ3jwGYz3` - make sure you've added the correct URL. If you think this is a mistake, contact a staff member!"
-      );
+		if (!hasBlossom) {
+			const embed = new StandardEmbed(message.author).setDescription(
+				"We couldn't find a panel with the Discord URL `discord.gg/QMQ3jwGYz3` - make sure you've added the correct URL. If you think this is a mistake, contact a staff member!"
+			);
 
-      return void message.reply(embed);
-    }
+			return void message.reply(embed);
+		}
 
-    const userProfile = await wrapRedis(`profile:${message.author.id}`, () => {
-      return prisma.profile.findFirst({
-        where: {
-          discord_id: message.author.id,
-        },
-      });
-    });
+		const userProfile = await wrapRedis(`profile:${message.author.id}`, () => {
+			return prisma.profile.findFirst({
+				where: {
+					discord_id: message.author.id,
+				},
+			});
+		});
 
-    if (!userProfile) {
-      await prisma.profile.create({
-        data: {
-          discord_id: message.author.id,
-          bio: data.user.description,
-          twitch: username,
-        },
-      });
-    }
+		if (!userProfile) {
+			await prisma.profile.create({
+				data: {
+					discord_id: message.author.id,
+					bio: data.user.description,
+					twitch: username,
+				},
+			});
+		}
 
-    await message.member?.roles.add(ambassadorRole);
+		await message.member?.roles.add(ambassadorRole);
 
-    await message.reply(
-      new StandardEmbed(message.author)
-        .setTitle("Welcome to the Blossom Ambassadors!")
-        .setDescription(
-          `You now have the <@&814190401291943987> role - you'll now show up on our sidebar when you're streaming & you're now an important part of the growth of Blossom Community <:blossomSalute:816806590530453526>\n\nWe've also created a profile for you - you can view your profile at any time with \`${prefix}profile\`.`
-        )
-    );
-  },
+		await message.reply(
+			new StandardEmbed(message.author)
+				.setTitle("Welcome to the Blossom Ambassadors!")
+				.setDescription(
+					`You now have the <@&814190401291943987> role - you'll now show up on our sidebar when you're streaming & you're now an important part of the growth of Blossom Community <:blossomSalute:816806590530453526>\n\nWe've also created a profile for you - you can view your profile at any time with \`${prefix}profile\`.`
+				)
+		);
+	},
 };

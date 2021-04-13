@@ -29,21 +29,21 @@ commands.add(status);
 commands.add(ambassador);
 
 export const commandsWithAliases = new Map(
-  Object.entries(
-    [...commands.values()].reduce((all, command) => {
-      const commandNames = [...new Set(command.aliases)];
+	Object.entries(
+		[...commands.values()].reduce((all, command) => {
+			const commandNames = [...new Set(command.aliases)];
 
-      return commandNames.reduce(
-        (previous, commandName) => {
-          return {
-            ...previous,
-            [commandName]: command,
-          };
-        },
-        {...all}
-      );
-    }, {} as Record<string, Command>)
-  )
+			return commandNames.reduce(
+				(previous, commandName) => {
+					return {
+						...previous,
+						[commandName]: command,
+					};
+				},
+				{...all}
+			);
+		}, {} as Record<string, Command>)
+	)
 );
 
 const commandNames = [...commands.values()].map(c => c.aliases).flat();
@@ -51,13 +51,13 @@ const commandNames = [...commands.values()].map(c => c.aliases).flat();
 const duplicateAliases = commandNames.filter((c, i, a) => a.indexOf(c) !== i);
 
 if (duplicateAliases.length > 0) {
-  throw new Error(`Encountered duplicate aliases: ${duplicateAliases.join(", ")}`);
+	throw new Error(`Encountered duplicate aliases: ${duplicateAliases.join(", ")}`);
 }
 
 signale.info(
-  "Registered commands:",
-  [...commands.values()]
-    .map(c => c.aliases)
-    .flat()
-    .join(", ")
+	"Registered commands:",
+	[...commands.values()]
+		.map(c => c.aliases)
+		.flat()
+		.join(", ")
 );
