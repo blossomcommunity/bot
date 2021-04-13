@@ -1,10 +1,10 @@
 version: "3"
 
 services:
-    db:
+    postgres:
         image: postgres
-        ports:
-            - 55432:5432
+        volumes:
+            - "postgres_data:/var/lib/postgresql/data"
         environment:
             POSTGRES_PASSWORD: postgres
             POSTGRES_USER: postgres
@@ -12,5 +12,17 @@ services:
 
     redis:
         image: redis
-        ports:
-            - 56379:6379
+        volumes:
+            - "redis_data:/redis/data"
+
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        env_file: .env.prod
+        command: yarn prod
+
+volumes:
+    redis_data:
+    postgres_data:
