@@ -3,7 +3,7 @@ import {wrapRedis} from "../redis";
 import fetch from "node-fetch";
 
 export class ThirdPartyStatuses {
-  public static discord() {
+  public static discord(): Promise<(readonly [string, boolean])[]> {
     return wrapRedis(
       "discord:status",
       async () => {
@@ -20,7 +20,7 @@ export class ThirdPartyStatuses {
     );
   }
 
-  public static twitch() {
+  public static twitch(): Promise<(readonly [string, boolean])[]> {
     return wrapRedis(
       "twitch:status",
       async () => {

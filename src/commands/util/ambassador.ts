@@ -2,7 +2,6 @@ import {guilds} from "../../inhibitors/guilds";
 import {Command} from "../../types/command";
 import {GraphQLClient, gql} from "graphql-request";
 import {StandardEmbed} from "../../structs/standard-embed";
-import {array} from "zod";
 import {wrapRedis} from "../../redis";
 import {prisma} from "../../prisma";
 import {Role} from "discord.js";

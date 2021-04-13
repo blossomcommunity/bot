@@ -1,6 +1,6 @@
-import {GuildMember, MessageEmbed, VoiceChannel} from "discord.js";
+import {GuildMember, MessageEmbed} from "discord.js";
 
-export async function guildMemberAdd(member: GuildMember) {
+export async function guildMemberAdd(member: GuildMember): Promise<void> {
   member.client.user?.setPresence({
     status: "online",
     activity: {
@@ -10,19 +10,6 @@ export async function guildMemberAdd(member: GuildMember) {
       } members!`,
     },
   });
-  // const channel = member.guild.channels.cache.find(channel => {
-  //   return (channel as VoiceChannel).id === process.env.MEMBER_COUNT_CHANNEL_ID;
-  // }) as VoiceChannel | undefined;
-
-  // if (!channel) {
-  //   throw new Error("No member count channel found!");
-  // }
-
-  // try {
-  //   await channel.setName(`🌸 ${member.guild.memberCount} members`);
-  // } catch (error) {
-  //   throw new Error(error);
-  // }
 
   const welcome = new MessageEmbed()
     .setAuthor(

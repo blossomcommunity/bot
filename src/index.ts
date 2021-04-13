@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import {Client, EmbedField} from "discord.js";
+import {Client} from "discord.js";
 import {commands, commandsWithAliases} from "./commands";
 import {prisma} from "./prisma";
 import {StandardEmbed} from "./structs/standard-embed";

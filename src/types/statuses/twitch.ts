@@ -21,10 +21,10 @@ export interface Component {
   created_at: string;
   updated_at: string;
   position: number;
-  description: any;
+  description: unknown;
   showcase: boolean;
   start_date?: string;
-  group_id: any;
+  group_id: unknown;
   page_id: string;
   group: boolean;
   only_show_if_degraded: boolean;
